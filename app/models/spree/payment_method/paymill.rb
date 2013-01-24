@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'paymill'
 
 module Spree
   class PaymentMethod::Paymill < Spree::PaymentMethod
