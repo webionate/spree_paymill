@@ -1,0 +1,55 @@
+<%
+  method = Spree::PaymentMethod.find_by_name('Paymill')
+%>
+<%= render :partial => "spree/checkout/payment/gateway", :locals => { :payment_method => method } %>
+
+<script type="text/javascript">
+    var PAYMILL_PUBLIC_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+</script>
+<script type="text/javascript" src="https://bridge.paymill.de/"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    var form = $("#checkout_form_payment");
+
+    function PaymillResponseHandler(error, result) {
+      if (error) {
+//        alert(error.apierror);
+      } else {
+        var token = result.token;
+        form.append("<input type='hidden' name='paymillToken' value='" + token + "'/>");
+        form.get(0).submit();
+      }
+    }
+      
+    form.submit(function (event) {
+      var paymill_code = $("#checkout_form_payment #SpreePaymentMethodPaymill");
+      
+      if (paymill_code.find('p[data-hook="card_number"] #card_number').val() != "") {
+        var exp_month = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_month"]').find('option:selected').val();
+        var exp_year = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_year"]').find('option:selected').val();
+
+        if (false == paymill.validateCardNumber(paymill_code.find('p[data-hook="card_number"] #card_number').val())) {
+//          alert("Card number invalid");
+          return false;
+        }
+
+        if (false == paymill.validateExpiry(exp_month, exp_year)) {
+//          alert("Expiry date invalid");
+          return false;
+        }
+
+        paymill.createToken({
+          number: paymill_code.find('p[data-hook="card_number"] #card_number').val(),
+          exp_month: exp_month,
+          exp_year: exp_year,
+          cvc: paymill_code.find('p[data-hook="card_code"] #card_code').val(),
+          cardholdername: '',
+          amount: <%= @order.amount %>,
+          currency: 'EUR'
+        }, PaymillResponseHandler);
+
+        return false;
+      }
+    });
+  });
+</script>
