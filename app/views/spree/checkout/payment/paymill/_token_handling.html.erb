@@ -3,20 +3,17 @@
     var form = $("#checkout_form_payment");
 
     function PaymillResponseHandler(error, result) {
-      alert("PaymillResponseHandler called");
       if (error) {
 //        alert(error.apierror);
       } else {
         var token = result.token;
         form.append("<input type='hidden' name='paymillToken' value='" + token + "'/>");
-        //form.get(0).submit();
+        form.get(0).submit();
       }
     }
     
     var tdsInit = function(redirect, cancelFn) {
       var checkout_div = $('#checkout[data-hook=""]');
-      
-//      var body   = $('#spree_paymill_threedsecure');
       var iframe = document.createElement('iframe');
       var url    = redirect.url;
       var params = redirect.params;
@@ -55,7 +52,6 @@
       iframe_form.submit();
       
       $('#checkout[data-hook=""]').css('display','none');
-      //$('#threedsecureModal').reveal();
     };
 
     var tdsCleanup = function() {
