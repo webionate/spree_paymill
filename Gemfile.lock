@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/acwebionate/paymill-ruby
-  revision: 81d4f8c65ae503446b3a2691212ac2c5c2886968
-  specs:
-    paymill (0.1.0)
-      json
-
-GIT
   remote: git://github.com/spree/spree_auth_devise
   revision: df2b887b2775fd0ab48ff80c2922c22132aa9fa7
   specs:
@@ -15,10 +8,18 @@ GIT
       devise-encryptable (= 0.1.1)
       spree_core
 
+GIT
+  remote: git://github.com/webionate/paymill-ruby
+  revision: 7641c92d91ab639fb3c5c8db33a8d518d328ec1c
+  specs:
+    paymill (0.1.0)
+      json
+
 PATH
   remote: .
   specs:
     spree_paymill (1.3.1)
+      paymill
       spree_core (~> 1.3.1)
 
 GEM

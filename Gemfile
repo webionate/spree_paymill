@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 gem 'spree_auth_devise', :git => "git://github.com/spree/spree_auth_devise"
 
 #gem 'activemerchant', :require => 'active_merchant'
-gem 'paymill', :git => 'git://github.com/acwebionate/paymill-ruby'
+gem 'paymill', :git => 'git://github.com/webionate/paymill-ruby'
 
 gemspec
 
