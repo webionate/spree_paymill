@@ -18,37 +18,45 @@ module Spree
       
       timestamp = Time.now
       
-      payment = ::Paymill::Payment.create(
-        id: "pay_#{options[:order_id]}",
-        card_type: credit_card.spree_cc_type, 
-        token: order.payment.response_code,
-        country: nil, 
-        expire_month: credit_card.month, 
-        expire_year: credit_card.year,
-        card_holder: nil,
-        last4: credit_card.display_number[15..18], 
-        created_at: timestamp,
-        updated_at: timestamp
+      client = ::Paymill::Client.create(
+        email: "#{options[:email]}"
       )
-      
-      unless payment.id.nil?
-        order.payment.response_code = payment.id
-        order.payment.save!
-      
-        transaction = ::Paymill::Transaction.create(
-          amount: money,
-          payment: payment.id,
-          client: options[:customer],
-          currency: "EUR"
+      unless client.id.nil?
+        payment = ::Paymill::Payment.create(
+          id: "pay_#{options[:order_id]}",
+          client: "#{client.id}",
+          card_type: credit_card.spree_cc_type, 
+          token: order.payment.response_code,
+          country: nil, 
+          expire_month: credit_card.month, 
+          expire_year: credit_card.year,
+          card_holder: nil,
+          last4: credit_card.display_number[15..18], 
+          created_at: timestamp,
+          updated_at: timestamp
         )
+      
+        unless payment.id.nil?
+          order.payment.response_code = payment.id
+          order.payment.save!
+      
+          transaction = ::Paymill::Transaction.create(
+            amount: money,
+            payment: "#{payment.id}",
+            client: "#{client.id}",
+            currency: "EUR"
+          )
         
-        unless transaction.id.nil?
-          ActiveMerchant::Billing::Response.new(true, 'Paymill transaction successful', {}, :authorization => transaction.id)
+          unless transaction.id.nil?
+            ActiveMerchant::Billing::Response.new(true, 'Paymill creating transaction successful', {}, :authorization => transaction.id)
+          else
+            ActiveMerchant::Billing::Response.new(false, 'Paymill creating transaction unsuccessful')
+          end
         else
-          ActiveMerchant::Billing::Response.new(false, 'Paymill transaction unsuccessful')
+          ActiveMerchant::Billing::Response.new(false, 'Paymill creating payment unsuccessful')
         end
       else
-        ActiveMerchant::Billing::Response.new(false, 'Paymill payment unsuccessful')
+        ActiveMerchant::Billing::Response.new(false, 'Paymill creating client unsuccessful')
       end
     end
     
