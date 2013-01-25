@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/webionate/paymill-ruby
-  revision: 7641c92d91ab639fb3c5c8db33a8d518d328ec1c
+  revision: 1671cf5d0a22991eb729e15c662cbe0fef01628d
   specs:
     paymill (0.1.0)
       json
