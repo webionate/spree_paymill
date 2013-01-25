@@ -1,3 +1,9 @@
 /*
  *= require store/spree_core
 */
+#creditcards .card {
+  margin: 0 5px;
+}
+#content-wrapper {
+  min-height: 500px;
+}

@@ -1,13 +1,8 @@
 <%
   method = Spree::PaymentMethod.find_by_name('Paymill')
 %>
-<style>
-  #content-wrapper {
-    min-height: 500px;
-  }
-</style>
 
-<%= render :partial => "spree/checkout/payment/gateway", :locals => { :payment_method => method } %>
+<%= render :partial => "spree/checkout/payment/paymill/form", :locals => { :payment_method => method } %>
 
 <script type="text/javascript">
     var PAYMILL_PUBLIC_KEY = '<%= method.preferred_public_key %>';
