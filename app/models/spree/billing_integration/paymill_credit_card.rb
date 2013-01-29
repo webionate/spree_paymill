@@ -1,5 +1,5 @@
 module Spree
-  class BillingIntegration::Paymill < Spree::BillingIntegration
+  class BillingIntegration::PaymillCreditCard < Spree::BillingIntegration
     preference :private_key, :string
     preference :public_key, :string
     
