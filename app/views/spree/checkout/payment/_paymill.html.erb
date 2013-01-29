@@ -1,5 +1,5 @@
 <%
-  method = Spree::PaymentMethod.find_by_name('Paymill')
+  method = Spree::PaymentMethod.find_by_type('Spree::BillingIntegration::Paymill')
 %>
 
 <%= render :partial => "spree/checkout/payment/paymill/form", :locals => { :payment_method => method } %>

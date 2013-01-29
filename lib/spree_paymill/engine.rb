@@ -19,7 +19,7 @@ module SpreePaymill
 
     initializer "spree_paymill.register.payment_methods" do |app|
       app.config.spree.payment_methods += [
-        Spree::PaymentMethod::Paymill
+        Spree::BillingIntegration::Paymill
       ]
     end
 

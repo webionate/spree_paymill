@@ -60,7 +60,7 @@
     };
     
     form.submit(function (event) {
-      var paymill_code = $("#checkout_form_payment #SpreePaymentMethodPaymill");
+      var paymill_code = $("#checkout_form_payment #SpreeBillingIntegrationPaymill");
       
       if (paymill_code.find('p[data-hook="card_number"] #card_number').val() != "") {
         var exp_month = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_month"]').find('option:selected').val();
