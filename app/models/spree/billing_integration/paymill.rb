@@ -1,6 +1,3 @@
-# encoding: UTF-8
-require 'paymill'
-
 module Spree
   class BillingIntegration::Paymill < Spree::BillingIntegration
     preference :private_key, :string
