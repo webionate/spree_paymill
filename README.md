@@ -10,6 +10,9 @@ Setup
 * Add spree_paymill to the Gemfile of your spree store
     `gem 'spree_paymill' , :git => 'git://github.com/webionate/spree_paymill.git'`
 
+* You currently also need our version of the active_merchant gem, because it contains additional code for the paymill gateway
+    `gem 'activemerchant', :git => 'git://github.com/webionate/active_merchant.git'`
+
 * Don't forget to run Bundler
     `$ bundle install`
 
