@@ -14,16 +14,20 @@ module Spree
     end
     
     def authorize(money, credit_card, options = {})
-      order = Spree::Order.find_by_number(options[:order_id])
-      
-      options[:api_key] = preferred_private_key
-      options[:token] = order.payment.response_code
-      
-      provider.authorize(money, credit_card, options)
+      order_id = options[:order_id].split('-')[0]
+      order = Spree::Order.find_by_number(order_id)
+      if (order.payment.response_code.start_with?('tok_'))
+        options[:api_key] = preferred_private_key
+        options[:token] = order.payment.response_code
+        provider.authorize(money, credit_card, options)
+      else
+        ActiveMerchant::Billing::PaymillResponse.new(true, 'Paymill authorization not necessary, because credit card was already authorized')
+      end
     end
     
     def capture(authorization, credit_card, options = {})
-      order = Spree::Order.find_by_number(options[:order_id])
+      order_id = options[:order_id].split('-')[0]
+      order = Spree::Order.find_by_number(order_id)
       
       options[:api_key] = preferred_private_key
       options[:preauthorization] = order.payment.response_code
