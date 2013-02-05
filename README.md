@@ -3,7 +3,7 @@ Welcome to spree_paymill
 
 This is a [SpreeCommerce](http://www.spreecommerce.com) extension for using the [Paymill](http://www.paymill.com) payment service. 
 
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/webionate/spree_paymill)
+[![Code Climate](https://codeclimate.com/github/webionate/spree_paymill.png)](https://codeclimate.com/github/webionate/spree_paymill)
 [![Build Status](https://travis-ci.org/webionate/spree_paymill.png?branch=master)](https://travis-ci.org/webionate/spree_paymill)
 
 Setup
