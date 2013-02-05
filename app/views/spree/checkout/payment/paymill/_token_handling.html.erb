@@ -60,33 +60,36 @@
     };
     
     form.submit(function (event) {
-      var paymill_code = $("#checkout_form_payment #SpreeBillingIntegrationPaymill");
+      cc_payment_method_id = $('#creditcards').attr('data-hook');
+      if ($('#order_payments_attributes__payment_method_id_'+cc_payment_method_id).prop('checked')) {
+        var paymill_code = $("#checkout_form_payment #payment_method_"+cc_payment_method_id);
       
-      if (paymill_code.find('p[data-hook="card_number"] #card_number').val() != "") {
-        var exp_month = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_month"]').find('option:selected').val();
-        var exp_year = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_year"]').find('option:selected').val();
+        if (paymill_code.find('p[data-hook="card_number"] #card_number').val() != "") {
+          var exp_month = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_month"]').find('option:selected').val();
+          var exp_year = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_year"]').find('option:selected').val();
 
-        if (false == paymill.validateCardNumber(paymill_code.find('p[data-hook="card_number"] #card_number').val())) {
-//          alert("Card number invalid");
+          if (false == paymill.validateCardNumber(paymill_code.find('p[data-hook="card_number"] #card_number').val())) {
+  //          alert("Card number invalid");
+            return false;
+          }
+
+          if (false == paymill.validateExpiry(exp_month, exp_year)) {
+  //          alert("Expiry date invalid");
+            return false;
+          }
+
+          paymill.createToken({
+            number: paymill_code.find('p[data-hook="card_number"] #card_number').val(),
+            exp_month: exp_month,
+            exp_year: exp_year,
+            cvc: paymill_code.find('p[data-hook="card_code"] #card_code').val(),
+            cardholdername: '',
+            amount: <%= @order.amount %>,
+            currency: 'EUR'
+          }, PaymillResponseHandler, tdsInit, tdsCleanup);
+
           return false;
         }
-
-        if (false == paymill.validateExpiry(exp_month, exp_year)) {
-//          alert("Expiry date invalid");
-          return false;
-        }
-
-        paymill.createToken({
-          number: paymill_code.find('p[data-hook="card_number"] #card_number').val(),
-          exp_month: exp_month,
-          exp_year: exp_year,
-          cvc: paymill_code.find('p[data-hook="card_code"] #card_code').val(),
-          cardholdername: '',
-          amount: <%= @order.amount %>,
-          currency: 'EUR'
-        }, PaymillResponseHandler, tdsInit, tdsCleanup);
-
-        return false;
       }
     });
   });
