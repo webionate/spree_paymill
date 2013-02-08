@@ -84,7 +84,7 @@
             exp_year: exp_year,
             cvc: paymill_code.find('p[data-hook="card_code"] #card_code').val(),
             cardholdername: '',
-            amount: <%= @order.amount %>,
+            amount: '<%= @order.amount %>',
             currency: 'EUR'
           }, PaymillResponseHandler, tdsInit, tdsCleanup);
 
