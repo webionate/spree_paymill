@@ -7,3 +7,6 @@
 #content-wrapper {
   min-height: 500px;
 }
+#creditcard_type_error {
+  display: none;
+}
