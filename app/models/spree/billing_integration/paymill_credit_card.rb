@@ -16,6 +16,7 @@ module Spree
     def authorize(money, credit_card, options = {})
       order_id = options[:order_id].split('-')[0]
       order = Spree::Order.find_by_number(order_id)
+      errors.add(:order, "couldn't find corresponding order") if order.nil?
       unless order.payment.response_code.blank?
         options[:api_key] = preferred_private_key
         options[:token] = order.payment.response_code
