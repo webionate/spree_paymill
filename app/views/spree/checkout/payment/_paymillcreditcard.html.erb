@@ -5,4 +5,4 @@
 </script>
 <script type="text/javascript" src="https://bridge.paymill.de/"></script>
 
-<%= render :partial => "spree/checkout/payment/paymill/token_handling" %>
+<%= render :partial => "spree/checkout/payment/paymill/token_handling", :locals => { :payment_method => payment_method } %>
