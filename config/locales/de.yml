@@ -1,4 +1,6 @@
 de:
-  paymill_code: "Paymill Code"
+  paymill_id: "ID"
+  paymill_response_code: "Response Code"
   ending_in: "endet auf"
   credit_card_type_not_supported: "Leider unterstützen wir diesen Kreditkartentyp nicht."
+  whats_this: "Was ist das?"

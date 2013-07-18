@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 2.0.3'
+  s.add_dependency 'activemerchant', '~> 1.32'
 
   s.add_development_dependency 'capybara', '~> 1.1.2'
   s.add_development_dependency 'coffee-rails'
