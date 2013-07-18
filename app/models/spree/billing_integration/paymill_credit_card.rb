@@ -32,6 +32,25 @@ module Spree
       response
     end
     
+    def purchase(money, credit_card, options = {})
+      payment = Spree::Payment.find_by_source_id(credit_card)
+      errors.add(:payment, "couldn't find corresponding payment") if payment.nil?
+
+      if payment.response_code.present?
+        token = payment.response_code
+
+        response = provider.purchase(money, token, options)
+
+        if response.success?
+          payment.response_code = nil
+          payment.save!
+        end
+      else
+        response = ActiveMerchant::Billing::Response.new(true, 'Paymill authorization not necessary, because credit card was already authorized')
+      end
+      response
+    end
+    
     def capture(money, authorization, options = {})
       provider.capture(money, authorization, options)
     end
