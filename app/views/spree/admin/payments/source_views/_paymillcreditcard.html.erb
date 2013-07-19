@@ -10,7 +10,7 @@
         <tr>
           <td width="12%;"><label><%= t('status') %>:</label></td>
           <td width="20%;">
-            <%= details.params["data"]["status"] %>
+            <%= details.params["data"] ? details.params["data"]["status"] : ''%>
           </td>
           <td width="8%;"><label><%= t("result") %>:</label></td>
           <td width="20%;">
@@ -18,17 +18,17 @@
           </td>
           <td width="15%;"><label><%= t("amount") %>:</label></td>
           <td width="20%;">
-            <%= number_to_currency(details.params["data"]["amount"].to_f/100) %>
+            <%= details.params["data"] ? number_to_currency(details.params["data"]["amount"].to_f/100) : ''%>
           </td>
         </tr>
         <tr>
           <td><label><%= t("paymill_id") %>:</label></td>
           <td colspan="3">
-            <%= details.params["data"]["id"] %>
+            <%= details.params["data"] ? details.params["data"]["id"] : ''%>
           </td>
           <td><label><%= t("paymill_response_code") %>:</label></td>
           <td>
-            <%= details.params["data"]["response_code"] %>
+            <%= details.params["data"] ? details.params["data"]["response_code"] : '' %>
           </td>
         </tr>
         <tr>
