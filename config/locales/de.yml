@@ -1,6 +1,11 @@
 de:
+  invalid_card_number: "Falscher Kartennummer"
+  invalid_expiry_date: "Ungültiges Verfallsdatum"
   paymill_id: "ID"
   paymill_response_code: "Response Code"
   ending_in: "endet auf"
   credit_card_type_not_supported: "Leider unterstützen wir diesen Kreditkartentyp nicht."
   whats_this: "Was ist das?"
+  spree:
+    invalid_card_number: "Falscher Kartennummer"
+    invalid_expiry_date: "Ungültiges Verfallsdatum"
