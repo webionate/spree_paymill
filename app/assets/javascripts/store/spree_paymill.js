@@ -73,12 +73,12 @@ $(document).ready(function () {
                 var exp_year = paymill_code.find('p[data-hook="card_expiration"]').find('select[id$="_year"]').find('option:selected').val();
 
                 if (false == paymill.validateCardNumber(paymill_code.find('p[data-hook="card_number"] #card_number').val())) {
-                    alert("<%= Spree.t 'invalid_card_number' %>");
+                    alert("Card number invalid");
                     return false;
                 }
 
                 if (false == paymill.validateExpiry(exp_month, exp_year)) {
-                    alert("<%= Spree.t 'invalid_expiry_date' %>");
+                    alert("Expiry date invalid");
                     return false;
                 }
 
