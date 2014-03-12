@@ -3,10 +3,17 @@
 $(document).ready(function () {
     var form = $("#checkout_form_payment");
 
+    function unableSubmitButton() {
+        $('.store-button').attr('disabled', false).removeClass('disabled');
+    }
+
     function PaymillResponseHandler(error, result) {
         if (error) {
-//        alert(error.apierror);
             console.log('ERROR: ' + error.apierror);
+            if (error.apierror == 'field_invalid_card_cvc') {
+                alert("CVC invalid");
+            }
+            unableSubmitButton();
         } else {
             var token = result.token;
             form.append("<input type='hidden' name='order[payments_attributes][][response_code]' value='" + token + "'/>");
@@ -74,11 +81,13 @@ $(document).ready(function () {
 
                 if (false == paymill.validateCardNumber(paymill_code.find('p[data-hook="card_number"] #card_number').val())) {
                     alert("Card number invalid");
+                    unableSubmitButton();
                     return false;
                 }
 
                 if (false == paymill.validateExpiry(exp_month, exp_year)) {
                     alert("Expiry date invalid");
+                    unableSubmitButton();
                     return false;
                 }
 
