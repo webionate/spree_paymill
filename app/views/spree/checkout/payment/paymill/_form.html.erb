@@ -1,4 +1,4 @@
-<div id="creditcards" data-hook="<%= "#{payment_method.id}" %>">
+<div id="creditcards_<%= "#{payment_method.id}" %>" class="f-creditcards" data-hook="<%= "#{payment_method.id}" %>" data-orderamount='<%= @order.amount %>' >
   <span class="card">
     <%= image_tag 'credit_cards/icons/visa.png', :id => 'visa-credit-card-image' %>
   </span>
@@ -6,29 +6,28 @@
     <%= image_tag 'credit_cards/icons/master.png', :id => 'mastercard-credit-card-image' %>
   </span>
 </div>
-<div id="creditcard_type_error"><%= t(:credit_card_type_not_supported) %></div>
 
 <% param_prefix = "payment_source[#{payment_method.id}]" %>
 
 <p class="field" data-hook="card_number">
-  <%= label_tag nil, t(:card_number) %>
+  <%= label_tag nil, Spree.t(:card_number) %>
   <span class="required">*</span><br />
   <% options_hash = Rails.env.production? ? {:autocomplete => 'off'} : {} %>
   <%= text_field_tag "#{param_prefix}[number]", '', options_hash.merge(:id => 'card_number', :class => 'required', :size => 19, :maxlength => 19, :autocomplete => "off") %>
   <span id="card_type" style="display:none;">
-    ( <span id="looks_like" ><%= t(:card_type_is) %> <span id="type"></span></span>
-      <span id="unrecognized"><%= t(:unrecognized_card_type) %></span>
+    ( <span id="looks_like" ><%= Spree.t(:card_type_is) %> <span id="type"></span></span>
+      <span id="unrecognized"><%= Spree.t(:unrecognized_card_type) %></span>
     )
   </span>
 </p>
 <p class="field" data-hook="card_expiration">
-  <%= label_tag nil, t(:expiration) %>
+  <%= label_tag nil, Spree.t(:expiration) %>
   <span class="required">*</span><br />
   <%= select_month(Date.today, :prefix => param_prefix, :field_name => 'month', :use_month_numbers => true, :class => 'required') %>
   <%= select_year(Date.today, :prefix => param_prefix, :field_name => 'year', :start_year => Date.today.year, :end_year => Date.today.year + 15, :class => 'required') %>
 </p>
 <p class="field" data-hook="card_code">
-  <%= label_tag nil, t(:card_code) %>
+  <%= label_tag nil, Spree.t(:card_code) %>
   <span class="required">*</span><br />
   <%= text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(:id => 'card_code', :class => 'required', :size => 5) %>
   <%= link_to "(#{t(:whats_this)})", spree.content_path('cvv'), :target => '_blank', :onclick => "window.open(this.href,'cvv_info','left=20,top=20,width=500,height=500,toolbar=0,resizable=0,scrollbars=1');return false", "data-hook" => "cvv_link" %>

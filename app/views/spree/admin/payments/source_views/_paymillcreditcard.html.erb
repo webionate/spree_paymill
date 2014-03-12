@@ -1,45 +1,45 @@
 <fieldset>
-  <legend><%= t('transactions') %></legend>
+  <legend><%= Spree.t('transactions') %></legend>
   <% payment.log_entries.reverse.each do |log| %>
   <% details = YAML.load(log.details) rescue "" %>
     <table class="index">
-      <% if details.is_a? ActiveMerchant::Billing::PaymillResponse %>
+      <% if details.is_a? ActiveMerchant::Billing::Response %>
         <tr>
-          <th colspan="6"><%= t('transaction') %> <%= details.params["transaction_id"] %> -  <%= log.created_at.to_s(:date_time24) %></th>
+          <th colspan="6"><%= Spree.t('transaction') %> <%= details.params["transaction_id"] %> -  <%= log.created_at.to_s(:date_time24) %></th>
         </tr>
         <tr>
-          <td width="12%;"><label><%= t('type') %>:</label></td>
+          <td width="12%;"><label><%= Spree.t('status') %>:</label></td>
           <td width="20%;">
-            <%= details.params["transaction_type"] %>
+            <%= details.params["data"] ? details.params["data"]["status"] : ''%>
           </td>
-          <td width="8%;"><label><%= t("result") %>:</label></td>
+          <td width="8%;"><label><%= Spree.t("result") %>:</label></td>
           <td width="20%;">
             <%= details.success? %>
           </td>
-          <td width="15%;"><label><%= t("amount") %>:</label></td>
+          <td width="15%;"><label><%= Spree.t("amount") %>:</label></td>
           <td width="20%;">
-            <%= number_to_currency details.params["amount"] %>
+            <%= details.params["data"] ? number_to_currency(details.params["data"]["amount"].to_f/100) : ''%>
           </td>
         </tr>
         <tr>
-          <td><label><%= t("paymill_code") %>:</label></td>
+          <td><label><%= Spree.t("paymill_id") %>:</label></td>
           <td colspan="3">
-            <%= details.authorization %>
+            <%= details.params["data"] ? details.params["data"]["id"] : ''%>
           </td>
-          <td><label><%= t("status") %>:</label></td>
+          <td><label><%= Spree.t("paymill_response_code") %>:</label></td>
           <td>
-            <%= details.payment_status %>
+            <%= details.params["data"] ? details.params["data"]["response_code"] : '' %>
           </td>
         </tr>
         <tr>
-          <td><label><%= t("comment") %>:</label></td>
+          <td><label><%= Spree.t("comment") %>:</label></td>
           <td colspan="5">
             <%= details.message %>
           </td>
         </tr>
       <% else %>
         <tr>
-          <th colspan="6"><%= t('unknown_transaction') %> -  <%= log.created_at.to_s(:date_time24) %></th>
+          <th colspan="6"><%= Spree.t('unknown_transaction') %> -  <%= log.created_at.to_s(:date_time24) %></th>
         </tr>
         <tr>
           <td colspan="6"><pre style="overflow: hidden; width:600px;"><%= log.details %></pre></th>

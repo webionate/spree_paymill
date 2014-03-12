@@ -1,3 +1,13 @@
+/.idea/.generators
+/.idea/.name
+/.idea/.rakeTasks
+/.idea/encodings.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/scopes/scope_settings.xml
+/.idea/spree_paymill.iml
+/.idea/vcs.xml
+/.idea/workspace.xml
 *.rbc
 *.sassc
 .sass-cache
