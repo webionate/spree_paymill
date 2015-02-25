@@ -5,10 +5,12 @@
 .idea
 .project
 .sass-cache
+.env
 coverage
 Gemfile.lock
 tmp
 nbproject
 pkg
 *.swp
+.bundle
 spec/dummy

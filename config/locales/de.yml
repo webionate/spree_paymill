@@ -1,0 +1,12 @@
+de:
+  paymill:
+    errors:
+      invalid_card_number: Bitte geben Sie eine gültige Kreditkartennummer an
+      invalid_card_holder: Bitte geben Sie einen gültigen Karteninhaber an
+      invalid_card_exp_month: Bitte geben Sie ein gültiges Ablaufdatum an
+      invalid_card_exp_year: Bitte geben Sie ein gültiges Ablaufdatum an
+      invalid_card_exp: Die Kreditkarte ist abgelaufen
+      invalid_card_cvc: Bitte geben Sie eine gültige Prüfnummer an
+      other_error: Es ist ein Fehler beim Bearbeiten ihrer Zahlung aufgetreten
+    response:
+      '40101': "Es gibt ein Problem mit der CVV"

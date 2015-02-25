@@ -29,9 +29,15 @@ require 'spree/testing_support/capybara_ext'
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/factories'
 require 'spree/testing_support/url_helpers'
+require 'spree/testing_support/order_walkthrough'
 
 # Requires factories defined in lib/spree_paymill/factories.rb
 require 'spree_paymill/factories'
+
+require 'capybara/poltergeist'
+require 'dotenv'
+
+Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -67,6 +73,7 @@ RSpec.configure do |config|
 
   # Ensure Suite is set to use transactions for speed.
   config.before :suite do
+    Dotenv.load
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with :truncation
   end

@@ -13,6 +13,8 @@ Setup
 
 * Don't forget to run Bundler
     `$ bundle install`
+* Install the extension
+    `$ rails g spree_paymill:install`
 
 * Login to your backoffice of the spree store
 
