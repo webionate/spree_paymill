@@ -1,0 +1,4 @@
+table.index#payments{
+  table-layout: fixed;
+  overflow-wrap: break-word;
+}
