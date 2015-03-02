@@ -6,8 +6,6 @@ en:
     errors:
       invalid_card_number: Please enter a valid creditcard number
       invalid_card_holder: Please enter a valid cardholder
-      invalid_card_exp_month: Please enter a valid expiry month
-      invalid_card_exp_year: Please enter a valid expiry year
-      invalid_card_exp: The creditcard is expired
+      invalid_card_exp: Please enter a valid expiry date
       invalid_card_cvc: Please enter a valid CVC number
-      other_error: There was an error processing your payment.
+      processing_error: An error occured while processing your payment data

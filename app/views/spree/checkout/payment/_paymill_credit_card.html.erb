@@ -1,38 +1,37 @@
 
 <%= image_tag 'credit_cards/credit_card.gif', :id => 'credit-card-image' %>
 <% param_prefix = "payment_source[#{payment_method.id}]" %>
-<div class="paymill-error">
+<div class="errorExplanation", id='paymill_error' hidden>
 </div>
 <p class="field">
   <%= label_tag "name_on_card_#{payment_method.id}", Spree.t(:name_on_card) %><span class="required">*</span><br />
   <%= text_field_tag "#{param_prefix}[name]", "#{@order.billing_firstname} #{@order.billing_lastname}", { id: "name_on_card_#{payment_method.id}"} %>
-  <span class="paymill-error"></span>
+  <%= label_tag "name_on_card_#{payment_method.id}", '', class: 'error', hidden: true %>
 </p>
 
 <p class="field" data-hook="card_number">
   <%= label_tag "card_number", Spree.t(:card_number) %><span class="required">*</span><br />
   <% options_hash = Rails.env.production? ? {:autocomplete => 'off'} : {} %>
   <%= text_field_tag nil, '', options_hash.merge(:id => 'card_number', :class => 'required cardNumber', :size => 19, :maxlength => 19, :autocomplete => "off") %>
-  &nbsp;
+  <%= label_tag "card_number", '', class: 'error', hidden: true %>
   <span id="card_type" style="display:none;">
     ( <span id="looks_like" ><%= Spree.t(:card_type_is) %> <span id="type"></span></span>
       <span id="unrecognized"><%= Spree.t(:unrecognized_card_type) %></span>
     )
   </span>
-  <span class="paymill-error"></span>
 </p>
 
 <p class="field" data-hook="card_expiration">
   <%= label_tag "card_expiry", Spree.t(:expiration) %><span class="required">*</span><br />
   <%= text_field_tag "#{param_prefix}[expiry]", '', :id => 'card_expiry', :class => "required cardExpiry", :placeholder => "MM / YY" %>
-  <span class="paymill-error"></span>
+  <%= label_tag "card_expiry", '', class: 'error', hidden: true %>
 </p>
 
 <p class="field" data-hook="card_code">
   <%= label_tag "card_code", Spree.t(:card_code) %><span class="required">*</span><br />
   <%= text_field_tag "#{param_prefix}[verification_value]", '', options_hash.merge(:id => 'card_code', :class => 'required cardCode', :size => 5) %>
   <%= link_to "(#{Spree.t(:what_is_this)})", spree.content_path('cvv'), :target => '_blank', "data-hook" => "cvv_link", :id => "cvv_link" %>
-  <span class="paymill-error"></span>
+  <%= label_tag nil, '', id: 'card_code', class: 'error', hidden: true %>
 </p>
 <%= hidden_field_tag "#{param_prefix}[gateway_payment_profile_id]", '', :id => "gateway_payment_profile_id", :class => 'gateway_payment_profile_id' %>
 <%= hidden_field_tag "#{param_prefix}[cc_type]", '', :id => "cc_type", :class => 'ccType' %>
@@ -49,11 +48,8 @@
   var PAYMILL_ERRORS = {
     invalidCardNumber: '<%= t('paymill.errors.invalid_card_number') %>',
     invalidCardHolder: '<%= t('paymill.errors.invalid_card_holder') %>',
-    invalidCardNumber: '<%= t('paymill.errors.invalid_card_number') %>',
-    invalidCardExpMonth: '<%= t('paymill.errors.invalid_card_exp_month') %>',
-    invalidCardExpYear: '<%= t('paymill.errors.invalid_card_exp_year') %>',
     invalidCardExp: '<%= t('paymill.errors.invalid_card_exp') %>',
     invalidCardCvc: '<%= t('paymill.errors.invalid_card_cvc') %>',
-    otherError: '<%= t('paymill.errors.other_error') %>',
+    processingError: '<%= t('paymill.errors.processing_error') %>',
   }
 </script>
