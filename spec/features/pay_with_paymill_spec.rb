@@ -61,6 +61,17 @@ describe 'Pay an order with Paymill' do
 
       expect(page).to_not have_content 'Please enter a valid creditcard number'
     end
+
+    scenario "pay an order with invalid creditcard", js: true do
+      visit spree.checkout_state_path(:payment)
+      fill_in 'Name on card', with: 'Hans Wurst'
+      fill_in 'Card Number', with: '5105105105105100'
+      fill_in 'Expiration', with: '10/20'
+      fill_in 'Card Code', with: '123'
+      click_on 'Save and Continue'
+      sleep 5
+      expect(page).to have_content 'Card invalid'
+    end
   end
 
   scenario "a paymill bridge error occured while paying an order with a creditcard ", js: true do

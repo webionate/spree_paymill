@@ -14,5 +14,13 @@ module Spree
         payment_method.gateway_payment_profile_id
       end
     end
+
+    def response_message(parsed_response)
+      return parsed_response["error"] if parsed_response["error"]
+      return "Transaction approved." if (parsed_response['data'] == [])
+
+      code = parsed_response["data"]["response_code"]
+      I18n.t("paymill.error_responses.#{code}") || code.to_s
+    end
   end
 end

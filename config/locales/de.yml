@@ -6,5 +6,42 @@ de:
       invalid_card_exp: Bitte geben Sie ein gültiges Ablaufdatum an
       invalid_card_cvc: Bitte geben Sie eine gültige Prüfnummer an
       processing_error: Es ist ein Fehler beim Bearbeiten ihrer Zahlung aufgetreten
-    response:
-      '40101': "Es gibt ein Problem mit der CVV"
+    error_responses:
+      '10001': General undefined response.
+      '10002': Still waiting on something.
+
+      '20000': General success response.
+
+      '40000': General problem with data.
+      '40001': General problem with payment data.
+      '40100': Es gibt ein Problem mit der Kreditkarte
+      '40101': Es gibt Problem mit der Prüfnummer
+      '40102': Kreditkarte abgelaufen oder noch nicht gültig
+      '40103': Kreditkartenlimit überschritten
+      '40104': Kreditkarte ungültig
+      '40105': Ablaufdatum nicht gültig
+      '40106': Marke der Kreditkarte ist nicht bekannt bzw. wird benötigt
+      '40202': Benutzer Authenfikation fehlgeschlagen
+      '40300': Es gibt ein Problem mit den 3D Secure Daten
+      '40301': Betrag und Währung passen nicht zusammen
+      '40400': Es gibt ein Problem mit den eingebenen Daten
+      '40401': Betrag kleiner oder gleich 0
+      '40402': Usage field too long.
+      '40403': Währung nicht erlaubt
+
+      '50000': General problem with backend.
+      '50001': Country blacklisted.
+      '50100': Technical error with credit card.
+      '50101': Error limit exceeded.
+      '50102': Card declined by authorization system.
+      '50103': Manipulation or stolen card.
+      '50104': Card restricted.
+      '50105': Invalid card configuration data.
+      '50200': Technical error with bank account.
+      '50201': Card blacklisted.
+      '50300': Technical error with 3D secure.
+      '50400': Decline because of risk issues.
+      '50500': General timeout.
+      '50501': Timeout on side of the acquirer.
+      '50502': Risk management transaction timeout.
+      '50600': Duplicate transaction.
