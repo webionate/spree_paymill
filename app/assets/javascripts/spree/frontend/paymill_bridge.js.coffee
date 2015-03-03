@@ -46,7 +46,6 @@ $(document).ready ->
         last4Digits = result.last4Digits
         paymillFormFields.find('#gateway_payment_profile_id').val(token)
         paymillFormFields.find('#last_digits').val(last4Digits)
-        paymillFormFields.find('#card_number').val('')
         paymentForm.get(0).submit();
 
   validatePaymentData = (paymillFormFields, paymillParams) ->
