@@ -8,12 +8,12 @@ de:
       processing_error: Es ist ein Fehler beim Bearbeiten ihrer Zahlung aufgetreten
     error_responses:
       '10001': General undefined response.
-      '10002': Still waiting on something.
+      '10002': Es wird auf etwas gewartet
 
       '20000': General success response.
 
-      '40000': General problem with data.
-      '40001': General problem with payment data.
+      '40000': Es gibt ein generelles Problem mit den Daten
+      '40001': Es gibt ein generelles Problem mit den Bezahldaten
       '40100': Es gibt ein Problem mit der Kreditkarte
       '40101': Es gibt Problem mit der Prüfnummer
       '40102': Kreditkarte abgelaufen oder noch nicht gültig
@@ -21,27 +21,27 @@ de:
       '40104': Kreditkarte ungültig
       '40105': Ablaufdatum nicht gültig
       '40106': Marke der Kreditkarte ist nicht bekannt bzw. wird benötigt
-      '40202': Benutzer Authenfikation fehlgeschlagen
+      '40202': Benutzerauthenfikation fehlgeschlagen
       '40300': Es gibt ein Problem mit den 3D Secure Daten
       '40301': Betrag und Währung passen nicht zusammen
       '40400': Es gibt ein Problem mit den eingebenen Daten
       '40401': Betrag kleiner oder gleich 0
-      '40402': Usage field too long.
+      '40402': Verwendungszweck-Feld zu lang
       '40403': Währung nicht erlaubt
 
-      '50000': General problem with backend.
-      '50001': Country blacklisted.
-      '50100': Technical error with credit card.
-      '50101': Error limit exceeded.
-      '50102': Card declined by authorization system.
-      '50103': Manipulation or stolen card.
-      '50104': Card restricted.
-      '50105': Invalid card configuration data.
-      '50200': Technical error with bank account.
-      '50201': Card blacklisted.
-      '50300': Technical error with 3D secure.
-      '50400': Decline because of risk issues.
-      '50500': General timeout.
-      '50501': Timeout on side of the acquirer.
-      '50502': Risk management transaction timeout.
-      '50600': Duplicate transaction.
+      '50000': Generelles Problem mit dem Backend
+      '50001': Land steht auf der schwarzen Liste
+      '50100': Es gibt ein technisches Problem mit der Kreditkarte
+      '50101': Fehler Kreditkartenlimit überschritten
+      '50102': Kreditkarte wurde durch das Autorisationssystem abgelehnt
+      '50103': Die Kreditkarte ist als manipuliert oder gestohlen gemeldet
+      '50104': Die Kreditkarte ist beschränkt
+      '50105': Ungültige Kreditkarten Konfigurationsdaten
+      '50200': Technischer Fehler mit dem Bankaccount.
+      '50201': Kreditkarte steht auf der schwarzen Liste
+      '50300': Technischer Fehler mit 3D Secure
+      '50400': Abgelehnt aufgrund der Risikobewertung
+      '50500': Genereller Timeout
+      '50501': Timeout auf Seiten des Verkäufers
+      '50502': Timeout im Risikobewertungssystem
+      '50600': Doppelte Transaktion
