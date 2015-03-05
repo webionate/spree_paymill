@@ -66,27 +66,27 @@ $(document).ready ->
 
   processPaymillBridge= (event) ->
     paymentForm = $(this).parents('form')
-    paymentFormFields = paymentForm.find('#payment_method_' + PAYMILL_BRIDGE_DATA.paymentMethodID + ' fieldset')
+    paymillFormFields = paymentForm.find('#payment_method_' + PAYMILL_BRIDGE_DATA.paymentMethodID)
     activePaymentMethodId = $(paymentForm).find('#payment-method-fields input:checked').val()
     if activePaymentMethodId != PAYMILL_BRIDGE_DATA.paymentMethodID
       return
     event.preventDefault()
-    clearErrors(paymentFormFields)
-    cardExpiry = paymentFormFields.find('#card_expiry').payment('cardExpiryVal')
+    clearErrors(paymillFormFields)
+    cardExpiry = paymillFormFields.find('#card_expiry').payment('cardExpiryVal')
     paymillParams = {
-      number: paymentFormFields.find('#card_number').val()
+      number: paymillFormFields.find('#card_number').val()
       exp_month: cardExpiry.month
       exp_year: cardExpiry.year
-      cvc: paymentFormFields.find('#card_code').val()
+      cvc: paymillFormFields.find('#card_code').val()
       amount_int: PAYMILL_BRIDGE_DATA.orderTotal
       currency: PAYMILL_BRIDGE_DATA.currency
-      cardholder: paymentFormFields.find('#name_on_card_' + PAYMILL_BRIDGE_DATA.paymentMethodID).val()
+      cardholder: paymillFormFields.find('#name_on_card_' + PAYMILL_BRIDGE_DATA.paymentMethodID).val()
     }
-    if !validatePaymentData(paymentFormFields, paymillParams)
+    if !validatePaymentData(paymillFormFields, paymillParams)
       return
     paymill.createToken(
       paymillParams,
-      paymillResponseHandler(paymentForm, paymentFormFields)
+      paymillResponseHandler(paymentForm, paymillFormFields)
     )
 
   $('#checkout_form_payment [type="submit"]').click processPaymillBridge
