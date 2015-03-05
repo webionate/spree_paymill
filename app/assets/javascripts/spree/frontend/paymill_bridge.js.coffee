@@ -89,4 +89,4 @@ $(document).ready ->
       paymillResponseHandler(paymentForm, paymentFormFields)
     )
 
-  $('#checkout_form_payment .button[type="submit"]').click processPaymillBridge
+  $('#checkout_form_payment [type="submit"]').click processPaymillBridge
