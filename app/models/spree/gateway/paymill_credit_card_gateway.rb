@@ -1,5 +1,7 @@
 module Spree
   class Gateway::PaymillCreditCardGateway <  ActiveMerchant::Billing::PaymillGateway
+    alias_method :credit, :refund
+
     private
 
     def action_with_token(action, money, payment_method, options)
