@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  spree:
+    paymill_token: Paymill Token
   paymill:
     errors:
       invalid_card_number: Please enter a valid creditcard number

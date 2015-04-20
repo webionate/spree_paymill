@@ -1,4 +1,6 @@
 de:
+  spree:
+    paymill_token: Paymill Token
   paymill:
     errors:
       invalid_card_number: Bitte geben Sie eine gültige Kreditkartennummer an
